@@ -12,8 +12,7 @@ ENV CORE_CHAINCODE_LOGGING_LEVEL info
 ENV CORE_PEER_LOCALMSPID Org1MSP
 ENV CORE_CHAINCODE_EXECUTETIMEOUT 300s
 ENV CORE_CHAINCODE_DEPLOYTIMEOUT 300s
-#ENV CORE_PEER_MSPCONFIGPATH /etc/hyperledger/fabric/crypto-config/peerOrganizations/org1.blockchain.com/peers/peer0.org1.blockchain.com/msp
-ENV CORE_PEER_MSPCONFIGPATH /etc/hyperledger/fabric/crypto-config/peerOrganizations/org1.blockchain.com
+ENV CORE_PEER_MSPCONFIGPATH /etc/hyperledger/msp/peer/
 ENV CORE_PEER_ADDRESS peer0.org1.blockchain.com:7051
 ENV CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE fornax-genesis
 ENV CORE_LEDGER_STATE_STATEDATABASE CouchDB
