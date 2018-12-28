@@ -26,22 +26,23 @@ ENV CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD adminpw
 
 #pre-req etcd's.sh
 RUN apt-get update && \
-    apt-get install -y jq curl && \
+    apt-get install -y jq curl iputils-ping && \
     rm -rf /var/cache/apt
 
 # fornax-peer
 LABEL maintainer="davimesquita@gmail.com"
 ENV ETCD_ENDPOINT http://etcd:2379
+ENV FORNAX_PEER 99
 COPY et.sh /bin/et
 COPY etset.sh /bin/etset
 COPY etdel.sh /bin/etdel
 COPY etfile.sh /bin/etfile
 COPY etoutput.sh /bin/etoutput
-COPY fornax-peer.sh /bin/fornax-peer
 RUN chmod +x /bin/et
 RUN chmod +x /bin/etset
 RUN chmod +x /bin/etdel
 RUN chmod +x /bin/etfile
 RUN chmod +x /bin/etoutput
+COPY fornax-peer.sh /bin/fornax-peer
 RUN chmod +x /bin/fornax-peer
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/bin/fornax-peer"]
