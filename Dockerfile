@@ -6,8 +6,7 @@ EXPOSE 7053
 ENV CORE_VM_ENDPOINT unix:///host/var/run/docker.sock
 ENV CORE_PEER_ID peer0.org1.blockchain.com
 ENV CORE_VM_DOCKER_ATTACHSTDOUT true
-# FIXME colocar nivel info
-ENV CORE_LOGGING_PEER debug
+ENV CORE_LOGGING_PEER info
 ENV CORE_CHAINCODE_LOGGING_LEVEL info
 ENV CORE_PEER_LOCALMSPID Org1MSP
 ENV CORE_CHAINCODE_EXECUTETIMEOUT 300s
@@ -23,6 +22,7 @@ ENV CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS couchdb:5984
 ENV CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME admin
 # TODO receber essa variavel
 ENV CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD adminpw
+ENV HOME_DIR=/opt/gopath/src/github.com/hyperledger/fabric
 
 #pre-req etcd's.sh
 RUN apt-get update && \
@@ -32,7 +32,7 @@ RUN apt-get update && \
 # fornax-peer
 LABEL maintainer="davimesquita@gmail.com"
 ENV ETCD_ENDPOINT http://etcd:2379
-ENV FORNAX_PEER 99
+ENV FORNAX_PEER 0
 COPY et.sh /bin/et
 COPY etset.sh /bin/etset
 COPY etdel.sh /bin/etdel
@@ -45,4 +45,5 @@ RUN chmod +x /bin/etfile
 RUN chmod +x /bin/etoutput
 COPY fornax-peer.sh /bin/fornax-peer
 RUN chmod +x /bin/fornax-peer
+WORKDIR $HOME_DIR
 ENTRYPOINT ["/bin/fornax-peer"]
