@@ -77,7 +77,7 @@ function waitGenesis() {
 function heartbeat() {
     while true;
     do
-        log INFO heartbeat OK
+        #log INFO heartbeat OK
         sleep 10
     done
 }
