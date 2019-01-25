@@ -1,6 +1,7 @@
 #https://github.com/yeasy/docker-hyperledger-fabric-peer/blob/master/v1.2.0/Dockerfile
 FROM hyperledger/fabric-peer:1.2.0
 EXPOSE 7051
+EXPOSE 7052
 EXPOSE 7053
 
 ENV CORE_VM_ENDPOINT unix:///host/var/run/docker.sock
